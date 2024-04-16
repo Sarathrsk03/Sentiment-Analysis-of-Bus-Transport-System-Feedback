@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,jsonify
 import mysql.connector
 from busSentiment import busSentimentModule
 
@@ -42,6 +42,34 @@ def submit_feedback():
         cursor.close()
 
         return "Feedback submitted successfully!"
+    except Exception as e:
+        return str(e)
+    
+from flask import render_template
+
+@app.route("/report-page", methods=['GET'])
+def render_report_page():
+    return render_template('report.html')
+
+@app.route("/report", methods=['GET'])
+def generateNegative():
+    sql = "SELECT bus_route, driver_behaviour, bus_condition, general_behaviour FROM FeedBack WHERE driver_sentiment = 'Negative' OR bus_sentiment = 'Negative' OR general_sentiment = 'Negative';"
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        # Fetch all rows
+        rows = cursor.fetchall()
+        # Convert rows to list of dictionaries
+        feedback_list = []
+        for row in rows:
+            feedback = {
+                'bus_route': row[0],
+                'driver_behaviour': row[1],
+                'bus_condition': row[2],
+                'general_behaviour': row[3]
+            }
+            feedback_list.append(feedback)
+        return jsonify(feedback_list)
     except Exception as e:
         return str(e)
 
