@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Feedback Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+    </style>
+</head>
+<body>
+    <h2>Bus Feedback Form</h2>
+    <form action="/submit_feedback" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="bus_route">Bus Route No:</label>
+        <select id="bus_route" name="bus_route">
+            <option value="42">Route 42</option>
+            <option value="27-A">Route 27-A</option>
+            <option value="27">Route 27</option>
+        </select><br><br>
+
+        <label for="driver_behaviour">Bus Driver Behaviour:</label>
+        <input type="text" id="driver_behaviour" name="driver_behaviour" required><br><br>
+
+        <label for="bus_condition">Bus Condition:</label>
+        <input type="text" id="bus_condition" name="bus_condition" required><br><br>
+
+        <label for="general_behaviour">General Behaviour in Bus:</label>
+        <input type="text" id="general_behaviour" name="general_behaviour" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
